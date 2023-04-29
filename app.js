@@ -1,15 +1,20 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import Book from './models/Book.js';
-
+import { fileURLToPath } from 'url';
+import path from 'path';
 import connectDB from "./db/connectdb.js"
 const DATABASE_URL = process.env.DATABASE_URL ||"mongodb://localhost:27017/bookManagement";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.set('view engine', 'ejs');
+app.use('/js', express.static(path.join(__dirname, 'public/js')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
+
 
 // Connect to MongoDB
 connectDB(DATABASE_URL);

@@ -1,37 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="/css/styles.css">
-   <title>Booklist</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Booklist</title>
 </head>
+
 <body>
-   <h1>Booklist</h1>
-   <table>
-      <thead>
-         <tr>
-            <th>Serial</th>
-            <th>Title</th>
-            <th>Publisher</th>
-            <th>Action</th>
-         </tr>
-      </thead>
-      <tbody>
-         <% books.forEach((book, index) => { %>
+    <h1>Booklist</h1>
+    <table>
+        <thead>
             <tr>
-               <td><%= index + 1 %></td>
-               <td><%= book.title %></td>
-               <td><%= book.publisher %></td>
-               <td>
-                  <a href="/edit/<%= book._id %>">Edit</a> |
-                  <a href="/delete/<%= book._id %>">Delete</a>
-               </td>
+                <th>Serial</th>
+                <th>Title</th>
+                <th>Publisher</th>
+                <th>Action</th>
             </tr>
-         <% }); %>
-      </tbody>
-   </table>
-   <a href="/">Add Book</a>
-   <a href="/search">Search Books</a>
+        </thead>
+        <tbody>
+            <% books.forEach((book, index)=> { %>
+                <tr>
+                    <td>
+                        <%= index + 1 %>
+                    </td>
+                    <td>
+                        <%= book.title %>
+                    </td>
+                    <td>
+                        <%= book.publisher %>
+                    </td>
+                    <td>
+                        <a href="/edit/<%= book._id %>">Edit</a> |
+                        <!-- ... -->
+                        <a href="/delete/<%= book._id %>" data-delete="<%= book._id %>">Delete</a>
+                        <!-- ... -->
+
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
+    <a href="/">Add Book</a>
+    <a href="/search">Search Books</a>
+    <!-- ... -->
+    <script src="/js/script.js"></script>
+    <!-- ... -->
+
 </body>
+
 </html>
