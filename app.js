@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import Book from './models/Book.js';
-import { connect } from "mongoose";
+
 import connectDB from "./db/connectdb.js"
 const DATABASE_URL = process.env.DATABASE_URL ||"mongodb://localhost:27017/bookManagement";
 
@@ -12,10 +12,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/bookdb', { useNewUrlParser: true, useUnifiedTopology: true });
-
-// Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
+connectDB(DATABASE_URL);
+// mongoose.connect('mongodb://localhost:27017/bookManagement', {
+//    useNewUrlParser: true,
+//    useUnifiedTopology: true,
+// });
 
 // Routes
 app.get('/', (req, res) => {
